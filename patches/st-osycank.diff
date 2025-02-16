@@ -1,0 +1,41 @@
+diff --git a/config.def.h b/config.def.h
+index 7cfc07c..0f8b406 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -43,6 +43,10 @@ static unsigned int tripleclicktimeout = 600;
+ /* alt screens */
+ int allowaltscreen = 1;
+ 
++/* allow certain non-interactive (insecure) window operations such as:
++   setting the clipboard text */
++int allowwindowops = 0;
++
+ /*
+  * draw latency range in ms - from new content/keypress/etc until drawing.
+  * within this range, st draws when content stops arriving (idle). mostly it's
+diff --git a/st.c b/st.c
+index b67152e..a0d728f 100644
+--- a/st.c
++++ b/st.c
+@@ -1861,7 +1861,7 @@ strhandle(void)
+ 				xsettitle(strescseq.args[1]);
+ 			return;
+ 		case 52:
+-			if (narg > 2) {
++			if (narg > 2 && allowwindowops) {
+ 				dec = base64dec(strescseq.args[2]);
+ 				if (dec) {
+ 					xsetsel(dec);
+diff --git a/st.h b/st.h
+index 6e60b78..1e0298a 100644
+--- a/st.h
++++ b/st.h
+@@ -118,6 +118,7 @@ extern char *stty_args;
+ extern char *vtiden;
+ extern wchar_t *worddelimiters;
+ extern int allowaltscreen;
++extern int allowwindowops;
+ extern char *termname;
+ extern unsigned int tabspaces;
+ extern unsigned int defaultfg;
+
