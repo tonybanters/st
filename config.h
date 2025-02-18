@@ -5,7 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrains Mono Nerd Font:pixelsize=24:antialias=true:autohint=true";
+/*static char *font = "JetBrains Mono Nerd Font:pixelsize=24:antialias=true:autohint=true";*/
+static char *font = "JetBrains Mono Nerd Font:pixelsize=24:antialias=true:autohint=true, Noto Sans CJK JP:pixelsize=24:antialias=true:autohint=true";
+
 static int borderpx = 2;
 
 /*
@@ -93,37 +95,39 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+
+float alpha = 0.8;
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
+	"#01060E",
+	"#EA6C73",
+	"#91B362",
+	"#F9AF4F",
+	"#53BDFA",
+	"#FAE994",
+	"#90E1C6",
 	"gray90",
-	
+
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
+	"#686868",
+	"#F07178",
+	"#8bcf5d",
+	"#FFB454",
+	"#59C2FF",
+	"#FFEE99",
+	"#95E6CB",
 	"white",
-	
+
 	[255] = 0,
-	
+
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
 	"gray90", /* default foreground colour */
 	"black", /* default background colour */
 };
-
 
 /*
  * Default colors (colorname index)
